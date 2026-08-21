@@ -419,15 +419,38 @@ video {
 
 
 /* =========================================================
+   ABOUT
+========================================================= */
+
+.about {
+    position: relative;
+
+    background: #1d1d1d;
+
+    color: white;
+
+    overflow: hidden;
+
+    min-height: 850px;
+}
+
+
+/* =========================================================
    背景人物
 ========================================================= */
 
 .about-bg {
-    right: 10%;
+    position: absolute;
+
+    right: 3%;
     bottom: -5%;
 
-    width: 750px;
-    height: 100%;
+    width: 650px;
+    height: 90%;
+
+    z-index: 0;
+
+    pointer-events: none;
 }
 
 
@@ -440,7 +463,7 @@ video {
     object-fit: contain;
     object-position: bottom;
 
-    opacity: 0.35;
+    opacity: 0.18;
 
     filter:
         grayscale(100%)
