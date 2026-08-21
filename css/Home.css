@@ -1252,6 +1252,30 @@ padding: 100px 20px;
         max-height: 85vh;
     }
 /* =========================
+   手机
+========================= */
+
+@media (max-width: 768px) {
+
+    .lightbox {
+        padding: 20px;
+    }
+
+    .lightbox-content img,
+    .lightbox-content video {
+        max-width: 95vw;
+        max-height: 85vh;
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 15px;
+    }
+
+}
+
+
+/* =========================
    SOCIAL LINKS
 ========================= */
 
@@ -1297,12 +1321,9 @@ padding: 100px 20px;
 .social-links a span:last-child {
     font-size: 20px;
 
-    transition:
-        transform 0.35s ease;
+    transition: transform 0.35s ease;
 }
 
-
-/* 鼠标悬停 */
 
 .social-links a:hover {
     background: #1d1d1d;
@@ -1316,5 +1337,20 @@ padding: 100px 20px;
 .social-links a:hover span:last-child {
     transform: translate(5px, -5px);
 }
+
+
+/* =========================
+   SOCIAL LINKS - MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .social-links {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links a {
+        padding: 20px;
+    }
 
 }
