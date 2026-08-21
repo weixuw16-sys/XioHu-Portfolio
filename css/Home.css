@@ -1,71 +1,81 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-font-family: Arial, Helvetica, sans-serif;
-background: #f5f1e8;
-color: #1d1d1d;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f1e8;
+    color: #1d1d1d;
+    overflow-x: hidden;
+}
+
+img,
+video {
+    max-width: 100%;
 }
 
 
-/* =========================
-NAVBAR
-========================= */
+/* =========================================================
+   NAVBAR
+========================================================= */
 
 .navbar {
-width: 100%;
-padding: 25px 7%;
+    width: 100%;
+    padding: 25px 7%;
 
-display: flex;
-justify-content: space-between;
-align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-position: fixed;
-top: 0;
-left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-background: rgba(245, 241, 232, 0.9);
+    background: rgba(245, 241, 232, 0.9);
+    backdrop-filter: blur(10px);
 
-backdrop-filter: blur(10px);
-
-z-index: 1000;
+    z-index: 1000;
 }
 
 .logo {
-font-size: 20px;
-font-weight: bold;
-letter-spacing: 3px;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
 }
 
 .navbar nav {
-display: flex;
-gap: 30px;
+    display: flex;
+    gap: 30px;
 }
 
 .navbar a {
-text-decoration: none;
-color: #1d1d1d;
+    color: #1d1d1d;
+    text-decoration: none;
+    font-size: 14px;
 
-font-size: 14px;
-
-transition: 0.3s;
+    transition: opacity 0.3s ease,
+                transform 0.3s ease;
 }
 
 .navbar a:hover {
-opacity: 0.5;
+    opacity: 0.5;
+    transform: translateY(-2px);
 }
 
 
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero {
     min-height: 100vh;
@@ -83,20 +93,20 @@ opacity: 0.5;
 }
 
 
-/* 背景装饰 */
+/* 背景文字 */
 
 .hero::before {
     content: "XIOHU";
 
     position: absolute;
 
+    right: -30px;
+    bottom: -40px;
+
     font-size: 22vw;
     font-weight: 900;
 
     color: rgba(29, 29, 29, 0.035);
-
-    right: -30px;
-    bottom: -40px;
 
     letter-spacing: -10px;
 
@@ -104,22 +114,24 @@ opacity: 0.5;
 }
 
 
-/* 左边文字 */
+/* Hero 左侧 */
 
 .hero-text {
     max-width: 700px;
-
     position: relative;
     z-index: 2;
+
+    opacity: 0;
+
+    animation: fadeUp 1s ease forwards;
 }
 
 
 /* 小标题 */
 
 .small-title {
-    letter-spacing: 6px;
-
     font-size: 13px;
+    letter-spacing: 6px;
 
     margin-bottom: 25px;
 
@@ -154,7 +166,6 @@ opacity: 0.5;
 
 .hero h1 span {
     font-style: italic;
-
     font-weight: 500;
 
     letter-spacing: -5px;
@@ -163,7 +174,7 @@ opacity: 0.5;
 }
 
 
-/* XioHu 底部装饰线 */
+/* XioHu 底线 */
 
 .hero h1 span::after {
     content: "";
@@ -174,7 +185,6 @@ opacity: 0.5;
     bottom: -5px;
 
     width: 70%;
-
     height: 3px;
 
     background: #1d1d1d;
@@ -183,7 +193,6 @@ opacity: 0.5;
     transform-origin: left;
 
     animation: lineReveal 0.8s ease forwards;
-
     animation-delay: 1s;
 }
 
@@ -204,14 +213,13 @@ opacity: 0.5;
     opacity: 0;
 
     animation: fadeUp 0.8s ease forwards;
-
     animation-delay: 0.5s;
 }
 
 
-/* =========================
+/* =========================================================
    BUTTON
-========================= */
+========================================================= */
 
 .button {
     display: inline-block;
@@ -219,28 +227,30 @@ opacity: 0.5;
     padding: 17px 34px;
 
     background: #1d1d1d;
-
     color: white;
 
     text-decoration: none;
 
     font-size: 14px;
-
     letter-spacing: 1px;
 
-    transition: 0.35s;
-
     position: relative;
-
     overflow: hidden;
+
+    isolation: isolate;
 
     opacity: 0;
 
     animation: fadeUp 0.8s ease forwards;
-
     animation-delay: 0.7s;
+
+    transition:
+        color 0.35s ease,
+        transform 0.35s ease;
 }
 
+
+/* 按钮白色滑动 */
 
 .button::before {
     content: "";
@@ -255,67 +265,51 @@ opacity: 0.5;
 
     background: white;
 
-    transition: 0.35s;
+    z-index: -1;
 
-    z-index: 0;
+    transition: left 0.35s ease;
 }
-
 
 .button:hover::before {
     left: 0;
 }
 
-
 .button:hover {
     color: #1d1d1d;
-
     transform: translateY(-5px);
 }
 
 
-.button {
-    position: relative;
-
-    z-index: 1;
-}
-
+/* 箭头 */
 
 .button::after {
     content: "→";
 
     margin-left: 12px;
-
-    position: relative;
-
-    z-index: 2;
 }
 
 
-.button {
-    isolation: isolate;
-}
-
-
-/* =========================
+/* =========================================================
    HERO IMAGE
-========================= */
+========================================================= */
 
 .hero-image {
     width: 42%;
 
     position: relative;
-
     z-index: 2;
 
     opacity: 0;
 
-    animation: imageReveal 1.2s cubic-bezier(.16,1,.3,1) forwards;
+    animation:
+        imageReveal 1.2s cubic-bezier(.16,1,.3,1)
+        forwards;
 
     animation-delay: 0.35s;
 }
 
 
-/* 图片后面的圆形 */
+/* 图片后面的圆 */
 
 .hero-image::before {
     content: "";
@@ -338,19 +332,16 @@ opacity: 0.5;
 }
 
 
-/* 图片框 */
+/* 图片盒子 */
 
 .image-box {
     width: 100%;
 
     aspect-ratio: 4 / 5;
 
-    background: transparent;
-
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     position: relative;
@@ -359,7 +350,7 @@ opacity: 0.5;
 }
 
 
-/* 真正图片 */
+/* Hero 图片 */
 
 .image-box img {
     width: 100%;
@@ -369,522 +360,177 @@ opacity: 0.5;
 
     display: block;
 
-    filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.18));
+    filter:
+        drop-shadow(
+            0 25px 25px rgba(0,0,0,0.18)
+        );
 
-    transition: transform 0.6s cubic-bezier(.16,1,.3,1);
+    transition:
+        transform 0.6s
+        cubic-bezier(.16,1,.3,1);
 }
 
 
-/* 鼠标放上人物 */
+/* Hover 人物 */
 
 .hero-image:hover .image-box img {
     transform: translateY(-10px) scale(1.03);
 }
 
 
-/* =========================
-   动画
-========================= */
-
-@keyframes fadeUp {
-
-    from {
-        opacity: 0;
-
-        transform: translateY(40px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform: translateY(0);
-    }
-
-}
-
-
-@keyframes imageReveal {
-
-    from {
-        opacity: 0;
-
-        transform: translateX(60px) scale(0.92);
-    }
-
-    to {
-        opacity: 1;
-
-        transform: translateX(0) scale(1);
-    }
-
-}
-
-
-@keyframes lineReveal {
-
-    from {
-        transform: scaleX(0);
-    }
-
-    to {
-        transform: scaleX(1);
-    }
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .hero {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        padding: 130px 20px 70px;
-
-        gap: 50px;
-    }
-
-
-    .hero h1 {
-        font-size: clamp(65px, 18vw, 100px);
-
-        letter-spacing: -4px;
-    }
-
-
-    .hero-image {
-        width: 100%;
-    }
-
-
-    .hero-image::before {
-        width: 280px;
-        height: 280px;
-    }
-
-}
-/* =========================
-SECTION
-========================= */
+/* =========================================================
+   SECTION
+========================================================= */
 
 .section {
-padding: 120px 8%;
+    padding: 120px 8%;
 }
 
 .section-title {
-margin-bottom: 70px;
+    margin-bottom: 70px;
 }
 
 .section-title p {
-font-size: 12px;
-
-letter-spacing: 4px;
-
-margin-bottom: 15px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
 }
 
 .section-title h2 {
-font-size: 60px;
+    font-size: 60px;
 }
 
 
-/* =========================
-ABOUT
-========================= */
+/* =========================================================
+   ABOUT
+========================================================= */
 
 .about {
-background: #1d1d1d;
-
-color: white;
+    background: #1d1d1d;
+    color: white;
 }
 
 .about-content {
-display: grid;
+    display: grid;
 
-grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
-gap: 80px;
+    gap: 80px;
 }
 
 .about h3 {
-font-size: 45px;
+    font-size: 45px;
 }
 
 .about-content p {
-line-height: 1.9;
-
-margin-bottom: 20px;
+    line-height: 1.9;
+    margin-bottom: 20px;
 }
 
 
-/* =========================
-SKILLS
-========================= */
+/* =========================================================
+   SKILLS
+========================================================= */
 
 .skill-grid {
-display: grid;
+    display: grid;
 
-grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
-gap: 1px;
+    gap: 1px;
 
-background: #1d1d1d;
+    background: #1d1d1d;
 }
 
 .skill-card {
-background: #f5f1e8;
+    background: #f5f1e8;
 
-padding: 50px;
+    padding: 50px;
 
-min-height: 250px;
+    min-height: 250px;
 
-transition: 0.3s;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
 }
 
 .skill-card:hover {
-transform: translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .skill-card span {
-font-size: 13px;
-
-opacity: 0.5;
+    font-size: 13px;
+    opacity: 0.5;
 }
 
 .skill-card h3 {
-font-size: 30px;
-
-margin: 35px 0 15px;
+    font-size: 30px;
+    margin: 35px 0 15px;
 }
 
 .skill-card p {
-line-height: 1.7;
+    line-height: 1.7;
 }
 
 
-/* =========================
-SOFTWARE
-========================= */
+/* =========================================================
+   SOFTWARE
+========================================================= */
 
 .software {
-padding: 100px 8%;
+    padding: 100px 8%;
 }
 
 .software-list {
-display: flex;
+    display: flex;
 
-flex-wrap: wrap;
+    flex-wrap: wrap;
 
-gap: 15px;
+    gap: 15px;
 }
 
 .software-list span {
-border: 1px solid #1d1d1d;
+    border: 1px solid #1d1d1d;
 
-padding: 15px 25px;
+    padding: 15px 25px;
 
-transition: 0.3s;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
 }
 
 .software-list span:hover {
-background: #1d1d1d;
+    background: #1d1d1d;
+    color: white;
 
-color: white;
+    transform: translateY(-3px);
 }
 
 
-/* =========================
-WORKS
-========================= */
+/* =========================================================
+   WORKS
+========================================================= */
 
 .work-grid {
-display: grid;
+    display: grid;
 
-grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
-gap: 60px 30px;
+    gap: 60px 30px;
 }
 
 .work-card {
-overflow: hidden;
-}
+    overflow: hidden;
 
-.work-image {
-aspect-ratio: 4 / 3;
-
-background: #d8d0c2;
-
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-
-transition: 0.5s;
-}
-
-.work-card:hover .work-image {
-transform: scale(1.03);
-}
-
-.work-image span {
-letter-spacing: 3px;
-
-color: #777;
-}
-
-.work-info {
-padding-top: 20px;
-}
-
-.work-info > p:first-child {
-font-size: 11px;
-
-letter-spacing: 3px;
-
-margin-bottom: 10px;
-}
-
-.work-info h3 {
-font-size: 28px;
-
-margin-bottom: 10px;
+    cursor: pointer;
 }
 
 
-/* =========================
-CONTACT
-========================= */
+/* 图片 / 视频容器 */
 
-.contact {
-min-height: 70vh;
-
-background: #c9b8a0;
-
-padding: 120px 8%;
-
-display: flex;
-
-flex-direction: column;
-
-justify-content: center;
-
-align-items: flex-start;
-}
-
-.contact > p {
-letter-spacing: 4px;
-
-font-size: 12px;
-
-margin-bottom: 30px;
-}
-
-.contact h2 {
-font-size: clamp(50px, 8vw, 110px);
-
-line-height: 0.95;
-
-margin-bottom: 50px;
-}
-
-
-/* =========================
-FOOTER
-========================= */
-
-footer {
-padding: 30px 8%;
-
-background: #1d1d1d;
-
-color: white;
-
-text-align: center;
-
-font-size: 13px;
-}
-
-
-/* =========================
-MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-.navbar {
-padding: 20px;
-}
-
-.navbar nav {
-display: none;
-}
-
-.hero {
-flex-direction: column;
-
-align-items: flex-start;
-
-padding: 130px 20px 70px;
-}
-
-.hero-image {
-width: 100%;
-}
-
-.section {
-padding: 80px 20px;
-}
-
-.section-title h2 {
-font-size: 45px;
-}
-
-.about-content {
-grid-template-columns: 1fr;
-
-gap: 40px;
-}
-
-.skill-grid {
-grid-template-columns: 1fr;
-}
-
-.work-grid {
-grid-template-columns: 1fr;
-}
-
-.software {
-padding: 80px 20px;
-}
-
-.contact {
-padding: 100px 20px;
-}
-
-}
-/* =========================
-   页面加载动画
-========================= */
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* 页面整体 */
-.hero-text {
-    animation: fadeUp 1s ease forwards;
-}
-
-
-/* 右侧图片 */
-.hero-image {
-    opacity: 0;
-    animation: fadeUp 1s ease forwards;
-    animation-delay: 0.3s;
-}
-
-
-/* 小标题 */
-.small-title {
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards;
-    animation-delay: 0.1s;
-}
-
-
-/* 主标题 */
-.hero h1 {
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards;
-    animation-delay: 0.3s;
-}
-
-
-/* 描述文字 */
-.hero-description {
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards;
-    animation-delay: 0.5s;
-}
-
-
-/* 按钮 */
-.hero .button {
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards;
-    animation-delay: 0.7s;
-}
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(70px) scale(0.96);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s cubic-bezier(.16, 1, .3, 1);
-
-    transition-delay: var(--delay, 0s);
-}
-
-
-.reveal.show {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-
-/* 从左边出现 */
-
-.reveal-left {
-    opacity: 0;
-    transform: translateX(-70px);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s cubic-bezier(.16, 1, .3, 1);
-}
-
-
-.reveal-left.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-
-/* 从右边出现 */
-
-.reveal-right {
-    opacity: 0;
-    transform: translateX(70px);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s cubic-bezier(.16, 1, .3, 1);
-}
-
-
-.reveal-right.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-/* =========================
-   work image
-========================= */
 .work-image {
     aspect-ratio: 4 / 3;
 
@@ -893,11 +539,16 @@ padding: 100px 20px;
     background: #d8d0c2;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
-    transition: 0.5s;
+    transition:
+        transform 0.5s ease;
 }
+
+
+/* 图片 */
 
 .work-image img {
     width: 100%;
@@ -907,15 +558,13 @@ padding: 100px 20px;
 
     display: block;
 
-    transition: transform 0.5s ease;
+    transition:
+        transform 0.5s ease;
 }
 
-.work-card:hover .work-image img {
-    transform: scale(1.05);
-}
-/* =========================
-   vidio
-========================= */
+
+/* 视频 */
+
 .work-image video {
     width: 100%;
     height: 100%;
@@ -924,78 +573,64 @@ padding: 100px 20px;
 
     display: block;
 
-    transition: transform 0.5s ease;
+    transition:
+        transform 0.5s ease;
 }
 
+
+/* Hover */
+
+.work-card:hover .work-image {
+    transform: scale(1.02);
+}
+
+.work-card:hover .work-image img,
 .work-card:hover .work-image video {
     transform: scale(1.05);
 }
-/* =========================
-   滚动 Footer
-========================= */
 
-.marquee-footer {
-    width: 100%;
-    overflow: hidden;
 
-    background: #1d1d1d;
-    color: white;
+/* 作品文字 */
 
-    padding: 25px 0;
-
-    white-space: nowrap;
+.work-info {
+    padding-top: 20px;
 }
 
-.marquee-track {
-    display: flex;
+.work-info > p:first-child {
+    font-size: 11px;
 
-    width: max-content;
+    letter-spacing: 3px;
 
-    animation: marquee 15s linear infinite;
+    margin-bottom: 10px;
 }
 
-.marquee-track span {
-    flex-shrink: 0;
+.work-info h3 {
+    font-size: 28px;
 
-    padding-right: 80px;
-
-    font-size: 13px;
-    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
 
-/* 无限向左滚动 */
-
-@keyframes marquee {
-
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-33.333%);
-    }
-
-}
-/* =========================
+/* =========================================================
    PHOTOGRAPHY
-========================= */
+========================================================= */
 
 .photography {
     padding: 120px 8%;
+
     background: #f5f1e8;
+
     overflow: hidden;
 }
-
 
 .photo-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     gap: 30px;
 }
-
 
 .photo-item {
     position: relative;
@@ -1007,7 +642,6 @@ padding: 100px 20px;
     cursor: pointer;
 }
 
-
 .photo-item img {
     width: 100%;
     height: 100%;
@@ -1017,7 +651,8 @@ padding: 100px 20px;
     display: block;
 
     transition:
-        transform 0.8s cubic-bezier(.16,1,.3,1),
+        transform 0.8s
+        cubic-bezier(.16,1,.3,1),
         filter 0.5s ease;
 }
 
@@ -1029,7 +664,7 @@ padding: 100px 20px;
 }
 
 
-/* 横向大图 */
+/* 横向图片 */
 
 .photo-wide {
     grid-column: 1 / -1;
@@ -1047,7 +682,7 @@ padding: 100px 20px;
 }
 
 
-/* 图片上的文字 */
+/* 摄影文字 */
 
 .photo-caption {
     position: absolute;
@@ -1066,13 +701,11 @@ padding: 100px 20px;
         transform 0.4s ease;
 }
 
-
 .photo-item:hover .photo-caption {
     opacity: 1;
 
     transform: translateY(0);
 }
-
 
 .photo-caption span {
     font-size: 11px;
@@ -1082,7 +715,6 @@ padding: 100px 20px;
     opacity: 0.8;
 }
 
-
 .photo-caption h3 {
     margin-top: 8px;
 
@@ -1090,9 +722,171 @@ padding: 100px 20px;
 
     font-weight: 500;
 }
-/* =========================
-   FULLSCREEN LIGHTBOX
-========================= */
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact {
+    min-height: 70vh;
+
+    background: #c9b8a0;
+
+    padding: 120px 8%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+.contact > p {
+    letter-spacing: 4px;
+
+    font-size: 12px;
+
+    margin-bottom: 30px;
+}
+
+.contact h2 {
+    font-size:
+        clamp(50px, 8vw, 110px);
+
+    line-height: 0.95;
+
+    margin-bottom: 50px;
+}
+
+
+/* =========================================================
+   SOCIAL LINKS
+========================================================= */
+
+.social-links {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(250px, 1fr));
+
+    gap: 1px;
+
+    background:
+        rgba(29, 29, 29, 0.3);
+
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 24px 28px;
+
+    background: #c9b8a0;
+
+    color: #1d1d1d;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* 右边箭头 */
+
+.social-links a span:last-child {
+    font-size: 20px;
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+/* Hover */
+
+.social-links a:hover {
+    background: #1d1d1d;
+
+    color: white;
+
+    transform: translateY(-4px);
+}
+
+.social-links a:hover span:last-child {
+    transform:
+        translate(5px, -5px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.marquee-footer {
+    width: 100%;
+
+    overflow: hidden;
+
+    background: #1d1d1d;
+
+    color: white;
+
+    padding: 25px 0;
+
+    white-space: nowrap;
+}
+
+.marquee-track {
+    display: flex;
+
+    width: max-content;
+
+    animation:
+        marquee 15s linear infinite;
+}
+
+.marquee-track span {
+    flex-shrink: 0;
+
+    padding-right: 80px;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+
+/* 无限滚动 */
+
+@keyframes marquee {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-33.333%);
+    }
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
 
 .lightbox {
     position: fixed;
@@ -1102,7 +896,8 @@ padding: 100px 20px;
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.95);
+    background:
+        rgba(0, 0, 0, 0.95);
 
     display: flex;
 
@@ -1138,24 +933,26 @@ padding: 100px 20px;
 
 .lightbox-content {
     max-width: 90vw;
+
     max-height: 90vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
 
     transform: scale(0.8);
 
     opacity: 0;
 
     transition:
-        transform 0.5s cubic-bezier(.16,1,.3,1),
+        transform 0.5s
+        cubic-bezier(.16,1,.3,1),
         opacity 0.4s ease;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
 }
 
 
-/* 打开时放大 */
+/* 打开动画 */
 
 .lightbox.active .lightbox-content {
     transform: scale(1);
@@ -1164,7 +961,7 @@ padding: 100px 20px;
 }
 
 
-/* 图片 */
+/* Lightbox 图片 */
 
 .lightbox-content img {
     max-width: 90vw;
@@ -1179,11 +976,12 @@ padding: 100px 20px;
     display: block;
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,0.5);
+        0 30px 80px
+        rgba(0,0,0,0.5);
 }
 
 
-/* 视频 */
+/* Lightbox 视频 */
 
 .lightbox-content video {
     max-width: 90vw;
@@ -1196,7 +994,8 @@ padding: 100px 20px;
     display: block;
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,0.5);
+        0 30px 80px
+        rgba(0,0,0,0.5);
 }
 
 
@@ -1213,7 +1012,8 @@ padding: 100px 20px;
 
     border: none;
 
-    background: rgba(255,255,255,0.1);
+    background:
+        rgba(255,255,255,0.1);
 
     color: white;
 
@@ -1230,19 +1030,283 @@ padding: 100px 20px;
         transform 0.3s ease;
 }
 
-
 .lightbox-close:hover {
-    background: rgba(255,255,255,0.2);
+    background:
+        rgba(255,255,255,0.2);
 
     transform: rotate(90deg);
 }
 
 
-/* =========================
-   LIGHTBOX - MOBILE
-========================= */
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(70px)
+        scale(0.96);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s
+        cubic-bezier(.16,1,.3,1);
+
+    transition-delay:
+        var(--delay, 0s);
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* 左边出现 */
+
+.reveal-left {
+    opacity: 0;
+
+    transform:
+        translateX(-70px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.reveal-left.show {
+    opacity: 1;
+
+    transform:
+        translateX(0);
+}
+
+
+/* 右边出现 */
+
+.reveal-right {
+    opacity: 0;
+
+    transform:
+        translateX(70px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.reveal-right.show {
+    opacity: 1;
+
+    transform:
+        translateX(0);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes imageReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(60px)
+            scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+
+}
+
+
+@keyframes lineReveal {
+
+    from {
+        transform:
+            scaleX(0);
+    }
+
+    to {
+        transform:
+            scaleX(1);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 768px) {
+
+    /* NAVBAR */
+
+    .navbar {
+        padding: 20px;
+    }
+
+    .navbar nav {
+        display: none;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding:
+            130px
+            20px
+            70px;
+
+        gap: 50px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(65px, 18vw, 100px);
+
+        letter-spacing: -4px;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-image::before {
+        width: 280px;
+        height: 280px;
+    }
+
+
+    /* SECTION */
+
+    .section {
+        padding: 80px 20px;
+    }
+
+    .section-title {
+        margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+        font-size: 45px;
+    }
+
+
+    /* ABOUT */
+
+    .about-content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    /* SKILLS */
+
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-card {
+        padding: 35px;
+    }
+
+
+    /* SOFTWARE */
+
+    .software {
+        padding: 80px 20px;
+    }
+
+
+    /* WORKS */
+
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* PHOTOGRAPHY */
+
+    .photography {
+        padding: 80px 20px;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-wide {
+        grid-column: auto;
+    }
+
+
+    /* CONTACT */
+
+    .contact {
+        padding: 100px 20px;
+    }
+
+    .contact h2 {
+        font-size:
+            clamp(50px, 15vw, 90px);
+    }
+
+
+    /* SOCIAL LINKS */
+
+    .social-links {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links a {
+        padding: 20px;
+    }
+
+
+    /* LIGHTBOX */
 
     .lightbox {
         padding: 20px;
@@ -1251,173 +1315,14 @@ padding: 100px 20px;
     .lightbox-content img,
     .lightbox-content video {
         max-width: 95vw;
+
         max-height: 85vh;
     }
 
     .lightbox-close {
         top: 15px;
+
         right: 15px;
-    }
-
-}
-
-
-/* =========================
-   SOCIAL LINKS
-========================= */
-
-.social-links {
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns: repeat(2, minmax(250px, 1fr));
-
-    gap: 1px;
-
-    background: rgba(29, 29, 29, 0.3);
-
-    margin-top: 20px;
-}
-
-
-.social-links a {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 24px 28px;
-
-    background: #c9b8a0;
-
-    color: #1d1d1d;
-
-    text-decoration: none;
-
-    font-size: 16px;
-
-    transition:
-        background 0.35s ease,
-        color 0.35s ease,
-        transform 0.35s ease;
-}
-
-
-.social-links a span:last-child {
-    font-size: 20px;
-
-    transition: transform 0.35s ease;
-}
-
-
-.social-links a:hover {
-    background: #1d1d1d;
-
-    color: white;
-
-    transform: translateY(-4px);
-}
-
-
-.social-links a:hover span:last-child {
-    transform: translate(5px, -5px);
-}
-
-
-/* =========================
-   SOCIAL LINKS - MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .social-links {
-        grid-template-columns: 1fr;
-    }
-
-    .social-links a {
-        padding: 20px;
-    }
-
-}
-
-/* =========================
-   SOCIAL LINKS
-========================= */
-
-.social-links {
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns: repeat(2, minmax(250px, 1fr));
-
-    gap: 1px;
-
-    background: rgba(29, 29, 29, 0.3);
-
-    margin-top: 20px;
-}
-
-
-.social-links a {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 24px 28px;
-
-    background: #c9b8a0;
-
-    color: #1d1d1d;
-
-    text-decoration: none;
-
-    font-size: 16px;
-
-    transition:
-        background 0.35s ease,
-        color 0.35s ease,
-        transform 0.35s ease;
-}
-
-
-.social-links a span:last-child {
-    font-size: 20px;
-
-    transition: transform 0.35s ease;
-}
-
-
-.social-links a:hover {
-    background: #1d1d1d;
-
-    color: white;
-
-    transform: translateY(-4px);
-}
-
-
-.social-links a:hover span:last-child {
-    transform: translate(5px, -5px);
-}
-
-
-/* =========================
-   SOCIAL LINKS - MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .social-links {
-        grid-template-columns: 1fr;
-    }
-
-    .social-links a {
-        padding: 20px;
     }
 
 }
