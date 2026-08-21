@@ -1,1 +1,58 @@
+name: Image optimize and normalize assets (safe)
 
+on:
+  workflow_dispatch:
+
+jobs:
+  optimize:
+    name: Optimize images and normalize filenames (push to branch)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create branch for changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b optimize-image-assets || git checkout optimize-image-assets
+
+      - name: Normalize filenames (git mv if present)
+        run: |
+          set -eux
+          if [ -f "png/[002566].png" ]; then git mv "png/[002566].png" png/002566.png || true; fi
+          if [ -f "png/未命名作品.png" ]; then git mv "png/未命名作品.png" png/unnamed.png || true; fi
+          if [ -f "png/绘画委托 12.png" ]; then git mv "png/绘画委托 12.png" png/painting_commission_12.png || true; fi
+          if [ -f "vidio/绘画委托_2.mp4" ]; then git mv "vidio/绘画委托_2.mp4" vidio/painting_commission_2.mp4 || true; fi
+          if [ -f "vidio/委托 2.mp4" ]; then git mv "vidio/委托 2.mp4" vidio/commission_2.mp4 || true; fi
+
+      - name: Install imagemin CLI and plugins
+        run: |
+          npm install -g imagemin-cli imagemin-mozjpeg imagemin-pngquant imagemin-webp
+
+      - name: Optimize photos in png/photograph
+        run: |
+          set -eux
+          mkdir -p png/photograph-optimized
+          npx imagemin "png/photograph/*.{png,jpg,jpeg,JPG,JPEG}" --plugin=pngquant --plugin=mozjpeg --out-dir=png/photograph-optimized || true
+          for f in png/photograph-optimized/*; do
+            base=$(basename "$f")
+            mv -f "png/photograph-optimized/$base" "png/photograph/$base"
+          done
+          rmdir png/photograph-optimized || true
+
+      - name: Commit and push changes to branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -eux
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Normalize asset filenames and optimize photograph images"
+            git push --set-upstream origin optimize-image-assets
+          fi
