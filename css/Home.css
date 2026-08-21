@@ -1317,25 +1317,4 @@ padding: 100px 20px;
     transform: translate(5px, -5px);
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .social-links {
-        grid-template-columns: 1fr;
-    }
-
-    .social-links a {
-        padding: 20px;
-    }
-
-}
-    .lightbox-close {
-        top: 15px;
-        right: 15px;
-    }
-
 }
