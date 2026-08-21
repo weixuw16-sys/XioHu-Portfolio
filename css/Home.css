@@ -1251,7 +1251,88 @@ padding: 100px 20px;
         max-width: 95vw;
         max-height: 85vh;
     }
+/* =========================
+   SOCIAL LINKS
+========================= */
 
+.social-links {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+
+    gap: 1px;
+
+    background: rgba(29, 29, 29, 0.3);
+
+    margin-top: 20px;
+}
+
+
+.social-links a {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 24px 28px;
+
+    background: #c9b8a0;
+
+    color: #1d1d1d;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+.social-links a span:last-child {
+    font-size: 20px;
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+/* 鼠标悬停 */
+
+.social-links a:hover {
+    background: #1d1d1d;
+
+    color: white;
+
+    transform: translateY(-4px);
+}
+
+
+.social-links a:hover span:last-child {
+    transform: translate(5px, -5px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .social-links {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links a {
+        padding: 20px;
+    }
+
+}
     .lightbox-close {
         top: 15px;
         right: 15px;
