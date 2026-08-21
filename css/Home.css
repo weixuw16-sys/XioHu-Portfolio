@@ -445,7 +445,7 @@ video {
     object-fit: contain;
     object-position: bottom;
 
-    opacity: 0.18;
+    opacity: 0.50;
 
     filter:
         grayscale(100%)
