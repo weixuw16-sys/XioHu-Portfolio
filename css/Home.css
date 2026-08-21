@@ -423,17 +423,11 @@ video {
 ========================================================= */
 
 .about-bg {
-    position: absolute;
-
-    right: 3%;
+    right: 10%;
     bottom: -5%;
 
-    width: 650px;
-    height: 90%;
-
-    z-index: 0;
-
-    pointer-events: none;
+    width: 750px;
+    height: 100%;
 }
 
 
@@ -446,7 +440,7 @@ video {
     object-fit: contain;
     object-position: bottom;
 
-    opacity: 0.18;
+    opacity: 0.35;
 
     filter:
         grayscale(100%)
