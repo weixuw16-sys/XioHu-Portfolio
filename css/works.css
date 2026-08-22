@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f5f1e8;
+
+    color: #1d1d1d;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+
+    width: 100%;
+
+    padding: 25px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    background: rgba(245, 241, 232, 0.9);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 1000;
+}
+
+
+.logo {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+
+.navbar nav {
+
+    display: flex;
+
+    gap: 30px;
+}
+
+
+.navbar a {
+
+    text-decoration: none;
+
+    color: #1d1d1d;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.navbar a:hover {
+
+    opacity: 0.5;
+}
+
+
+/* =========================
+   WORKS PAGE
+========================= */
+
+.works-page {
+
+    min-height: 100vh;
+
+    padding: 160px 8% 100px;
+}
+
+
+.section-title {
+
+    margin-bottom: 80px;
+}
+
+
+.section-title p {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+
+.section-title h1 {
+
+    font-size: clamp(60px, 9vw, 120px);
+
+    line-height: 0.9;
+
+    letter-spacing: -5px;
+}
+
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+.works-placeholder {
+
+    min-height: 400px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #d8d0c2;
+
+    text-align: center;
+}
+
+
+.works-placeholder p {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+
+.works-placeholder h2 {
+
+    font-size: 35px;
+
+    font-weight: 500;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding: 30px 8%;
+
+    background: #1d1d1d;
+
+    text-align: center;
+}
+
+
+footer a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        padding: 20px;
+    }
+
+
+    .navbar nav {
+
+        display: none;
+    }
+
+
+    .works-page {
+
+        padding: 130px 20px 70px;
+    }
+
+
+    .section-title h1 {
+
+        font-size: 60px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .works-placeholder h2 {
+
+        font-size: 25px;
+    }
+
+}
