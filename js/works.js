@@ -2,31 +2,42 @@
    WORK FILTER
 ========================================================= */
 
-const filterButtons = document.querySelectorAll(".filter-btn");
-const portfolioCards = document.querySelectorAll(".portfolio-card");
+const filterButtons =
+    document.querySelectorAll(".filter-btn");
+
+const portfolioCards =
+    document.querySelectorAll(".portfolio-card");
 
 
 filterButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
-        const filter = button.dataset.filter;
+        const filter =
+            button.dataset.filter;
 
 
         /* 移除所有 active */
+
         filterButtons.forEach(btn => {
+
             btn.classList.remove("active");
+
         });
 
 
-        /* 当前按钮 active */
+        /* 当前按钮 */
+
         button.classList.add("active");
 
 
         /* 筛选作品 */
-        portfolioCards.forEach(card => {
 
-            const category = card.dataset.category;
+        portfolioCards.forEach((card, index) => {
+
+            const category =
+                card.dataset.category;
+
 
             if (
                 filter === "all" ||
@@ -34,6 +45,17 @@ filterButtons.forEach(button => {
             ) {
 
                 card.classList.remove("hidden");
+
+
+                /* 重新播放出现动画 */
+
+                card.style.animation = "none";
+
+                void card.offsetWidth;
+
+                card.style.animation =
+                    `cardReveal 0.7s cubic-bezier(.16,1,.3,1) ${index * 0.08}s both`;
+
 
             } else {
 
@@ -50,48 +72,71 @@ filterButtons.forEach(button => {
 
 
 /* =========================================================
-   LIGHTBOX
+   LIGHTBOX ELEMENTS
 ========================================================= */
 
-const lightbox = document.getElementById("workLightbox");
-const lightboxInner = document.getElementById("lightboxInner");
-const lightboxClose = document.getElementById("lightboxClose");
+const lightbox =
+    document.getElementById("workLightbox");
+
+const lightboxInner =
+    document.getElementById("lightboxInner");
+
+const lightboxClose =
+    document.getElementById("lightboxClose");
 
 
 
 /* =========================================================
-   打开 Lightbox
+   OPEN LIGHTBOX
 ========================================================= */
 
 function openLightbox() {
 
     if (!lightbox) return;
 
+
     lightbox.classList.add("active");
 
-    document.body.style.overflow = "hidden";
+    lightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
 
 /* =========================================================
-   关闭 Lightbox
+   CLOSE LIGHTBOX
 ========================================================= */
 
 function closeLightbox() {
 
     if (!lightbox) return;
 
+
     lightbox.classList.remove("active");
 
-    document.body.style.overflow = "";
+    lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
 
 
     setTimeout(() => {
 
         if (lightboxInner) {
+
             lightboxInner.innerHTML = "";
+
         }
 
     }, 400);
@@ -101,91 +146,142 @@ function closeLightbox() {
 
 
 /* =========================================================
-   图片全屏
+   IMAGE LIGHTBOX
 ========================================================= */
 
 document
     .querySelectorAll(".portfolio-media img")
     .forEach(image => {
 
-        image.addEventListener("click", () => {
 
-            if (!lightboxInner) return;
-
-
-            lightboxInner.innerHTML = "";
+        image.addEventListener(
+            "click",
+            () => {
 
 
-            const newImage = document.createElement("img");
-
-            newImage.src = image.src;
-
-            newImage.alt = image.alt;
+                if (!lightboxInner) return;
 
 
-            lightboxInner.appendChild(newImage);
+                /* 清空 */
+
+                lightboxInner.innerHTML =
+                    "";
 
 
-            openLightbox();
+                /* 创建新图片 */
 
-        });
+                const newImage =
+                    document.createElement("img");
+
+
+                newImage.src =
+                    image.currentSrc ||
+                    image.src;
+
+
+                newImage.alt =
+                    image.alt;
+
+
+                lightboxInner.appendChild(
+                    newImage
+                );
+
+
+                openLightbox();
+
+            }
+        );
 
     });
 
 
 
 /* =========================================================
-   视频全屏
+   VIDEO LIGHTBOX
 ========================================================= */
 
 document
     .querySelectorAll(".portfolio-media video")
     .forEach(video => {
 
-        video.addEventListener("click", event => {
 
-            event.preventDefault();
-
-
-            if (!lightboxInner) return;
+        video.addEventListener(
+            "click",
+            event => {
 
 
-            lightboxInner.innerHTML = "";
+                event.preventDefault();
 
 
-            const newVideo = document.createElement("video");
+                if (!lightboxInner) return;
 
 
-            newVideo.src =
-                video.currentSrc ||
-                video.querySelector("source")?.src;
+                /* 清空 */
+
+                lightboxInner.innerHTML =
+                    "";
 
 
-            newVideo.controls = true;
+                /* 创建视频 */
 
-            newVideo.autoplay = true;
-
-            newVideo.loop = true;
-
-            newVideo.playsInline = true;
+                const newVideo =
+                    document.createElement("video");
 
 
-            lightboxInner.appendChild(newVideo);
+                newVideo.src =
+                    video.currentSrc ||
+                    video.querySelector(
+                        "source"
+                    )?.src ||
+                    "";
 
 
-            openLightbox();
+                newVideo.controls =
+                    true;
 
 
-            newVideo.play().catch(() => {});
+                newVideo.autoplay =
+                    true;
 
-        });
+
+                newVideo.loop =
+                    true;
+
+
+                newVideo.playsInline =
+                    true;
+
+
+                newVideo.setAttribute(
+                    "playsinline",
+                    ""
+                );
+
+
+                lightboxInner.appendChild(
+                    newVideo
+                );
+
+
+                openLightbox();
+
+
+                /* 播放 */
+
+                newVideo
+                    .play()
+                    .catch(() => {});
+
+            }
+        );
 
     });
 
 
 
 /* =========================================================
-   关闭按钮
+   CLOSE BUTTON
 ========================================================= */
 
 if (lightboxClose) {
@@ -200,7 +296,7 @@ if (lightboxClose) {
 
 
 /* =========================================================
-   点击黑色背景关闭
+   CLICK BACKGROUND TO CLOSE
 ========================================================= */
 
 if (lightbox) {
@@ -209,7 +305,10 @@ if (lightbox) {
         "click",
         event => {
 
-            if (event.target === lightbox) {
+
+            if (
+                event.target === lightbox
+            ) {
 
                 closeLightbox();
 
@@ -223,14 +322,19 @@ if (lightbox) {
 
 
 /* =========================================================
-   ESC 关闭
+   ESC CLOSE
 ========================================================= */
 
 document.addEventListener(
     "keydown",
     event => {
 
-        if (event.key === "Escape") {
+
+        if (
+            event.key === "Escape" &&
+            lightbox &&
+            lightbox.classList.contains("active")
+        ) {
 
             closeLightbox();
 
@@ -238,3 +342,23 @@ document.addEventListener(
 
     }
 );
+
+
+
+/* =========================================================
+   CLICK LIGHTBOX CONTENT
+   防止点击图片本身关闭
+========================================================= */
+
+if (lightboxInner) {
+
+    lightboxInner.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+        }
+    );
+
+}
