@@ -5,19 +5,17 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>My Works - XioHu</title>
 
-    <!-- 作品页面 CSS -->
-   <link rel="stylesheet"
+    <link rel="stylesheet"
           href="./css/works.css">
 
-    <!-- 网站图标 -->
     <link rel="icon"
           type="image/png"
           href="./png/%E6%9C%AA%E5%91%BD%E5%93%81.png">
-
 
 </head>
 
@@ -25,9 +23,9 @@
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
      NAVBAR
-========================= -->
+===================================================== -->
 
 <header class="navbar">
 
@@ -68,16 +66,19 @@
 
 
 
-<!-- =========================
-     WORKS
-========================= -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main>
+
 
 <section class="works-page">
 
 
-    <!-- 标题 -->
+    <!-- =================================================
+         PAGE TITLE
+    ================================================== -->
 
     <div class="works-heading">
 
@@ -93,63 +94,95 @@
 
 
 
-    <!-- =========================
-         CATEGORY
-    ========================= -->
+    <!-- =================================================
+         FILTER
+    ================================================== -->
 
     <div class="work-filter">
 
-        <button class="filter-btn active" data-filter="all">
+        <button
+            class="filter-btn active"
+            data-filter="all"
+            type="button">
+
             全部
+
         </button>
 
-        <button class="filter-btn" data-filter="brand">
+
+        <button
+            class="filter-btn"
+            data-filter="brand"
+            type="button">
+
             品牌设计
+
         </button>
 
-        <button class="filter-btn" data-filter="illustration">
+
+        <button
+            class="filter-btn"
+            data-filter="illustration"
+            type="button">
+
             插画
+
         </button>
 
-        <button class="filter-btn" data-filter="photo">
+
+        <button
+            class="filter-btn"
+            data-filter="photo"
+            type="button">
+
             摄影
+
         </button>
 
-        <button class="filter-btn" data-filter="motion">
+
+        <button
+            class="filter-btn"
+            data-filter="motion"
+            type="button">
+
             动画
+
         </button>
 
     </div>
 
 
 
-    <!-- =========================
-         WORK GRID
-    ========================= -->
+    <!-- =================================================
+         WORK GALLERY
+    ================================================== -->
 
     <div class="works-gallery">
 
 
+        <!-- =================================================
+             WORK 01
+        ================================================== -->
 
-        <!-- =====================
-             品牌设计
-        ====================== -->
-
-        <article class="portfolio-card"
-                 data-category="brand">
+        <article
+            class="portfolio-card"
+            data-category="brand"
+            data-type="image">
 
             <div class="portfolio-media">
 
                 <img
                     src="./png/disign2.png"
                     alt="品牌视觉设计"
-                >
+                    loading="lazy">
 
                 <div class="portfolio-overlay">
 
                     <div class="overlay-content">
 
-                        <p>BRAND DESIGN</p>
+                        <p>
+                            BRAND DESIGN
+                        </p>
 
                         <h2>
                             品牌视觉设计
@@ -186,26 +219,29 @@
 
 
 
+        <!-- =================================================
+             WORK 02
+        ================================================== -->
 
-        <!-- =====================
-             插画
-        ====================== -->
+        <article
+            class="portfolio-card"
+            data-category="illustration"
+            data-type="image">
 
-        <article class="portfolio-card"
-                 data-category="illustration">
-
-            <div class="portfolio-media">
+            <div class="portfolio-media illustration-media">
 
                 <img
                     src="./png/%5B002566%5D.png"
-                    alt="角色设计"
-                >
+                    alt="原创角色设计"
+                    loading="lazy">
 
                 <div class="portfolio-overlay">
 
                     <div class="overlay-content">
 
-                        <p>ILLUSTRATION</p>
+                        <p>
+                            ILLUSTRATION
+                        </p>
 
                         <h2>
                             原创角色设计
@@ -242,26 +278,29 @@
 
 
 
+        <!-- =================================================
+             WORK 03
+        ================================================== -->
 
-        <!-- =====================
-             摄影
-        ====================== -->
-
-        <article class="portfolio-card"
-                 data-category="photo">
+        <article
+            class="portfolio-card"
+            data-category="photo"
+            data-type="image">
 
             <div class="portfolio-media">
 
                 <img
                     src="./png/photograph/DSC0238.jpg"
-                    alt="摄影作品"
-                >
+                    alt="春节摄影"
+                    loading="lazy">
 
                 <div class="portfolio-overlay">
 
                     <div class="overlay-content">
 
-                        <p>PHOTOGRAPHY</p>
+                        <p>
+                            PHOTOGRAPHY
+                        </p>
 
                         <h2>
                             春节摄影
@@ -298,26 +337,29 @@
 
 
 
+        <!-- =================================================
+             WORK 04
+        ================================================== -->
 
-        <!-- =====================
-             摄影 2
-        ====================== -->
-
-        <article class="portfolio-card"
-                 data-category="photo">
+        <article
+            class="portfolio-card"
+            data-category="photo"
+            data-type="image">
 
             <div class="portfolio-media">
 
                 <img
                     src="./png/photograph/IMG_1667.JPG"
                     alt="产品摄影"
-                >
+                    loading="lazy">
 
                 <div class="portfolio-overlay">
 
                     <div class="overlay-content">
 
-                        <p>PHOTOGRAPHY</p>
+                        <p>
+                            PHOTOGRAPHY
+                        </p>
 
                         <h2>
                             产品摄影
@@ -354,13 +396,14 @@
 
 
 
+        <!-- =================================================
+             WORK 05
+        ================================================== -->
 
-        <!-- =====================
-             动画
-        ====================== -->
-
-        <article class="portfolio-card"
-                 data-category="motion">
+        <article
+            class="portfolio-card"
+            data-category="motion"
+            data-type="video">
 
             <div class="portfolio-media">
 
@@ -369,12 +412,13 @@
                     loop
                     autoplay
                     playsinline
-                >
+                    preload="metadata">
 
                     <source
                         src="./vidio/%E7%BB%98%E7%94%BB%E5%A7%94%E6%89%98_2.mp4"
-                        type="video/mp4"
-                    >
+                        type="video/mp4">
+
+                    您的浏览器不支持视频播放。
 
                 </video>
 
@@ -383,7 +427,9 @@
 
                     <div class="overlay-content">
 
-                        <p>MOTION DESIGN</p>
+                        <p>
+                            MOTION DESIGN
+                        </p>
 
                         <h2>
                             动态视觉设计
@@ -419,9 +465,7 @@
         </article>
 
 
-
     </div>
-
 
 </section>
 
@@ -429,31 +473,39 @@
 
 
 
-<!-- =========================
+<!-- =====================================================
      LIGHTBOX
-========================= -->
+===================================================== -->
 
-<div class="work-lightbox" id="workLightbox">
+<div
+    class="work-lightbox"
+    id="workLightbox"
+    aria-hidden="true">
 
     <button
         class="lightbox-close"
-        id="lightboxClose">
+        id="lightboxClose"
+        type="button"
+        aria-label="关闭">
+
         ×
+
     </button>
 
 
     <div
         class="lightbox-inner"
         id="lightboxInner">
+
     </div>
 
 </div>
 
 
 
-<!-- =========================
-     BACK HOME
-========================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
