@@ -1,6 +1,7 @@
 /* =========================================================
    LOCAL LANGUAGE SYSTEM
    Chinese <-> professional English. No external translation API.
+   Language switcher: only 中文 / EN, beside MY DESIGN.
 ========================================================= */
 (() => {
     const STORAGE_KEY = "xiohu-language";
@@ -102,38 +103,91 @@
         nodes.forEach(node => translateTextNode(node, language));
         translateAttributes(language);
 
-        const titleMap = {
-            zh: "我的作品 - XioHu",
-            en: "Selected Works - XioHu"
-        };
         if (document.title === "My Works - XioHu" || document.title === "Selected Works - XioHu" || document.title === "我的作品 - XioHu") {
-            document.title = titleMap[language];
+            document.title = language === "en" ? "Selected Works - XioHu" : "我的作品 - XioHu";
         }
 
         document.querySelectorAll("[data-language-switch]").forEach(button => {
             button.textContent = language === "en" ? "中文" : "EN";
             button.setAttribute("aria-label", language === "en" ? "Switch to Chinese" : "切换到英文");
+            button.title = language === "en" ? "切换到中文" : "Switch to English";
         });
     }
 
     function addSwitcher() {
         if (document.querySelector("[data-language-switch]")) return;
-        const nav = document.querySelector(".navbar nav");
-        if (!nav) return;
+
+        const logo = document.querySelector(".navbar .logo");
+        if (!logo) return;
+
         const button = document.createElement("button");
         button.type = "button";
         button.dataset.languageSwitch = "true";
         button.className = "language-switch";
-        button.style.cssText = "margin-left:12px;padding:8px 12px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;font:inherit;";
         button.addEventListener("click", () => {
-            const next = getLanguage() === "en" ? "zh" : "en";
-            localStorage.setItem(STORAGE_KEY, next);
+            localStorage.setItem(STORAGE_KEY, getLanguage() === "en" ? "zh" : "en");
             location.reload();
         });
-        nav.appendChild(button);
+
+        logo.insertAdjacentElement("afterend", button);
+    }
+
+    function addSwitcherStyle() {
+        if (document.getElementById("language-switch-style")) return;
+
+        const style = document.createElement("style");
+        style.id = "language-switch-style";
+        style.textContent = `
+            .language-switch {
+                appearance: none;
+                border: 0;
+                background: transparent;
+                color: #1d1d1d;
+                padding: 5px 0;
+                margin-left: 20px;
+                min-width: 30px;
+                font: inherit;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+                line-height: 1;
+                cursor: pointer;
+                position: relative;
+                transition: opacity .25s ease, transform .25s ease;
+                z-index: 1001;
+            }
+            .language-switch::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 1px;
+                background: currentColor;
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform .25s ease;
+            }
+            .language-switch:hover {
+                opacity: .55;
+                transform: translateY(-1px);
+            }
+            .language-switch:hover::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+            @media (max-width: 768px) {
+                .language-switch {
+                    margin-left: 14px;
+                    font-size: 11px;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        addSwitcherStyle();
         addSwitcher();
         translatePage(getLanguage());
     });
